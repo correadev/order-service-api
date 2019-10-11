@@ -4,17 +4,19 @@ export default function makeGetOrder ({ listOrder }) {
       'Content-Type': 'application/json'
     }
     try {
-      const postComments = await listOrder({
-        postId: httpRequest.query.postId
+      const order = await listOrder({
+        serviceType: httpRequest.query.serviceType,
+        lat: httpRequest.query.lat,
+        long: httpRequest.query.long
       })
       return {
         headers,
         statusCode: 200,
-        body: postComments
+        body: order
       }
     } catch (e) {
-      // TODO: Error logging
       console.log(e)
+
       return {
         headers,
         statusCode: 400,
