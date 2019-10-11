@@ -4,6 +4,7 @@ module.exports = function makeExpressCallback (controller) {
       body: req.body,
       query: req.query,
       params: req.params,
+      token: req.token,
       ip: req.ip,
       method: req.method,
       path: req.path,

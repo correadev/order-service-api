@@ -1,9 +1,9 @@
-import { msgInformarTipoServico } from '../helpers/string-resources'
+import { msgWrongParameters } from '../helpers/string-resources'
 
 export default function makeListOrder ({ ordersDb }) {
   return function listOrder ({ serviceType, lat, long } = {}) {
     if (!serviceType || !lat || !long) {
-      throw new Error(msgInformarTipoServico)
+      throw new Error(msgWrongParameters)
     }
 
     const partners = ordersDb.findPartners({
