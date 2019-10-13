@@ -8,10 +8,11 @@ export default function makeGetlogin ({ login }) {
         email: httpRequest.body.email,
         password: httpRequest.body.password
       })
+
       return {
         headers,
         statusCode: 200,
-        body: token
+        body: { token }
       }
     } catch (e) {
       console.log(e)

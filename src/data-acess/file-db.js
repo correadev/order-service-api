@@ -8,7 +8,7 @@ export default function makeFileDb () {
   })
 
   function findPartners ({ serviceType, lat, long }) {
-    const partners = readDbFile(partnersDb)
+    const partners = readDbFile('./file-db/partners.json')
 
     return partners.filter(({ location, availableServices }) =>
       +location.lat === +lat &&

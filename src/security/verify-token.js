@@ -1,5 +1,5 @@
-export default function makeLogin ({ ordersDb, sign }) {
-    return async function login ({ email, password }) {
+export default function makeVerifyToken ({ ordersDb, sign }) {
+    return async function verifyToken ({ email, password }) {
       if (!email || !password) {
         throw new Error('Email ou senha não informados.')
       }

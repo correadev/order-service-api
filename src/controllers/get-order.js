@@ -1,19 +1,9 @@
-export default function makeGetOrder ({ listOrder, jwt }) {
+export default function makeGetOrder ({ listOrder, verify }) {
   return async function getOrder (httpRequest) {
     const headers = {
       'Content-Type': 'application/json'
     }
     try {
-      jwt.verify(httpRequest.token, 'secretkey', (err, httpRequest) => {
-        if (err) {
-          return {
-            headers,
-            statusCode: 403,
-            body: err
-          }
-        }
-      })
-
       const order = await listOrder({
         serviceType: httpRequest.query.serviceType,
         lat: httpRequest.query.lat,
