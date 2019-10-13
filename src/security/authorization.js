@@ -1,4 +1,4 @@
-module.exports = function makeExpressCallback (controller) {
+module.exports = function makeAuthorizationCallback (controller) {
   return (req, res) => {
     const httpRequest = {
       body: req.body,
@@ -15,17 +15,6 @@ module.exports = function makeExpressCallback (controller) {
         Authorization: req.get('authorization')
       }
     }
-
-    const bearerHeader = httpRequest.headers.Authorization
-
-    if (!bearerHeader) {
-      res.status(403).send({ error: 'forbidden' })
-      return
-    }
-
-    const bearer = bearerHeader.split(' ')
-    const bearerToken = bearer[1]
-    httpRequest.token = bearerToken
 
     controller(httpRequest)
       .then(httpResponse => {

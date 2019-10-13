@@ -1,9 +1,13 @@
-export default function makeGetOrder ({ listOrder, verify }) {
+export default function makeGetOrder ({ listOrder }, verifyToken) {
   return async function getOrder (httpRequest) {
     const headers = {
       'Content-Type': 'application/json'
     }
     try {
+      const validToken = verifyToken(httpRequest)
+
+      console.log(validToken)
+
       const order = await listOrder({
         serviceType: httpRequest.query.serviceType,
         lat: httpRequest.query.lat,
