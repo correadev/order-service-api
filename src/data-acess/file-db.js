@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { partnersDb, usersDb } from './db-paths'
+import { usersDb, partnersDb } from './db-paths'
 
 export default function makeFileDb () {
   return Object.freeze({
@@ -8,14 +8,14 @@ export default function makeFileDb () {
   })
 
   function findPartnersByServiceType ({ serviceType }) {
-    const partners = readDbFile('./file-db/partners.json')
+    const partners = readDbFile(partnersDb)
 
     return partners.filter(({ availableServices }) =>
       availableServices.includes(serviceType))
   }
 
   async function findUser ({ email, password }) {
-    const users = readDbFile('./file-db/users.json')
+    const users = readDbFile(usersDb)
 
     return users.find(u => u.email === email && u.password === password)
   }

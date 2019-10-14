@@ -1,16 +1,35 @@
-import { msgWrongParameters } from '../helpers/string-resources'
 import calculateDistance from './calculate-distance'
+import {
+  msgMissingServiceType,
+  msgMissingLatitude,
+  msgMissingLongitude
+} from '../helpers/string-resources'
 
 export default function makeListOrder ({ ordersDb }) {
   return function listOrder ({ serviceType, lat, long } = {}) {
-    if (!serviceType || !lat || !long) {
-      throw new Error(msgWrongParameters)
+    if (!serviceType) {
+      throw new Error(msgMissingServiceType)
+    }
+
+    if (!lat) {
+      throw new Error(msgMissingLatitude)
+    }
+
+    if (!long) {
+      throw new Error(msgMissingLongitude)
     }
 
     const partners = ordersDb.findPartnersByServiceType({ serviceType })
 
-    console.log(calculateDistance(-23.619575, -46.627023, partners[0].location.lat, partners[0].location.long))
+    const closePartners = []
+    const maxDistanceKm = 10
 
-    return partners
+    partners.forEach(partner => {
+      if (calculateDistance(lat, long, partner.location.lat, partner.location.long) <= maxDistanceKm) {
+        closePartners.push(partner)
+      }
+    })
+
+    return closePartners
   }
 }
