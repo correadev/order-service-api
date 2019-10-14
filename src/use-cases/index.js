@@ -1,13 +1,13 @@
 import calculateDistance from './calculate-distance'
-import makeListOrder from './list-order'
+import makeListPartner from './list-partner'
 import ordersDb from '../data-acess'
 
-const listOrder = makeListOrder({ ordersDb })
+const listPartner = makeListPartner({ ordersDb })
 
 const orderService = Object.freeze({
-  listOrder,
+  listPartner,
   calculateDistance
 })
 
 export default orderService
-export { listOrder, calculateDistance }
+export { listPartner, calculateDistance }

@@ -2,7 +2,7 @@ import bodyParser from 'body-parser'
 import dotenv from 'dotenv'
 import express from 'express'
 import makeCallback from './express-callback'
-import { getOrder, getLogin } from './controllers'
+import { getPartner, getLogin } from './controllers'
 import { makeAuthorizationCallback } from './security'
 
 const app = express()
@@ -12,7 +12,7 @@ dotenv.config()
 
 const apiRoot = process.env.API_ROOT
 
-app.get(`/${apiRoot}/order`, makeCallback(getOrder))
+app.get(`/${apiRoot}/partner`, makeCallback(getPartner))
 app.post(`/${apiRoot}/login`, makeAuthorizationCallback(getLogin))
 
 if (process.env.API_ENV === 'dev') {
