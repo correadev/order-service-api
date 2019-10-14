@@ -4,9 +4,7 @@ export default function makeGetOrder ({ listOrder }, verifyToken) {
       'Content-Type': 'application/json'
     }
     try {
-      const validToken = verifyToken(httpRequest)
-
-      console.log(validToken)
+      verifyToken(httpRequest.token)
 
       const order = await listOrder({
         serviceType: httpRequest.query.serviceType,

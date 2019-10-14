@@ -1,5 +1,5 @@
 export default function makeVerifyToken ({ verify }, secretKey) {
-  return function verifyToken (httpRequest) {
-    return verify(httpRequest.token, secretKey)
+  return function verifyToken (token) {
+    return verify(token, secretKey)
   }
 }

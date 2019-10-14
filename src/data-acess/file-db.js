@@ -3,16 +3,14 @@ import { partnersDb, usersDb } from './db-paths'
 
 export default function makeFileDb () {
   return Object.freeze({
-    findPartners,
+    findPartnersByServiceType,
     findUser
   })
 
-  function findPartners ({ serviceType, lat, long }) {
+  function findPartnersByServiceType ({ serviceType }) {
     const partners = readDbFile('./file-db/partners.json')
 
-    return partners.filter(({ location, availableServices }) =>
-      +location.lat === +lat &&
-      +location.long === +long &&
+    return partners.filter(({ availableServices }) =>
       availableServices.includes(serviceType))
   }
 
