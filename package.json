@@ -23,12 +23,6 @@
     "url": "https://github.com/correadev/order-service-api/issues"
   },
   "homepage": "https://github.com/correadev/order-service-api#readme",
-  "jest": {
-    "verbose": false,
-    "globalSetup": "./jest-setup.js",
-    "globalTeardown": "./jest-teardown.js",
-    "testEnvironment": "./jest-mongo.js"
-  },
   "dependencies": {
     "@devmastery/pipe": "^0.0.6",
     "axios": "^0.18.1",
@@ -57,7 +51,7 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "faker": "^4.1.0",
-    "jest": "^24.3.1",
+    "jest": "^24.9.0",
     "mongodb-memory-server": "^4.0.2",
     "nodemon": "^1.18.10",
     "rimraf": "^2.6.3"
